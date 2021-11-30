@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
+	<class name="Wescale.DevTestCommon.User, DevTestCommon" table="wpsm_User" lazy="false">
+		<!-- Properties von Entity -->
+		<id name="ID" column="_id" type="Int32">
+			<generator class="native" />
+		</id>
+		<version name="Version" column="_version" />
+		<property name="CreatedOnUtc" column="_createdOnUtc" type="DateTime" update="false" />
+		<property name="ModifiedOnUtc" column="_modifiedOnUtc" insert="false" />
+		<!-- Properties der Entität -->
+		<property name="Login" type="String" length="50" />
+		<property name="Name" type="String" length="100" />
+		<property name="Email" type="String" length="255" />
+	</class>
+</hibernate-mapping>
