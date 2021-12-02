@@ -13,20 +13,26 @@
 							<asp:Label runat="server" ID="_nameLbl" CssClass="myLabel">Name</asp:Label></td>
 						<td>
 							<asp:TextBox runat="server" ID="_nameText"></asp:TextBox>
-							<asp:RequiredFieldValidator runat="server" ID="_nameRequired" ErrorMessage="Please enter a name." ControlToValidate="_nameText" />
+							<asp:RequiredFieldValidator runat="server" ID="_nameRequired" ErrorMessage="Please enter a name." ControlToValidate="_nameText" ValidationGroup="info" />
 						</td>
 					</tr>
 					<tr>
 						<td>
 							<asp:Label runat="server" ID="_qtyLbl" CssClass="myLabel">Quantity</asp:Label></td>
 						<td>
-							<asp:TextBox runat="server" ID="_qtyText"></asp:TextBox></td>
+							<asp:TextBox runat="server" ID="_qtyText"></asp:TextBox>
+							<asp:RequiredFieldValidator runat="server" ID="_qtyTextRequired" ErrorMessage="Please enter a value." ControlToValidate="_qtyText" ValidationGroup="info" />
+							<asp:RegularExpressionValidator ID="_qtyTextRequiredValue" ControlToValidate="_qtyText" runat="server" ErrorMessage="Enter the value in number" ValidationExpression="\d+" ValidationGroup="info" />
+						</td>
 					</tr>
 					<tr>
 						<td>
 							<asp:Label runat="server" ID="_lblPrice" CssClass="myLabel">Price</asp:Label></td>
 						<td>
-							<asp:TextBox runat="server" ID="_priceTxt"></asp:TextBox></td>
+							<asp:TextBox runat="server" ID="_priceTxt"></asp:TextBox>
+							<asp:RequiredFieldValidator runat="server" ID="_priceTxtRequire" ErrorMessage="Please enter a value." ControlToValidate="_priceTxt" ValidationGroup="info" />
+							<asp:RegularExpressionValidator ID="_priceTxtRequireValue" ControlToValidate="_priceTxt" runat="server" ErrorMessage="Enter the value in number" ValidationExpression="\d+" ValidationGroup="info" />
+						</td>
 					</tr>
 					<tr>
 						<td>
@@ -34,7 +40,7 @@
 						<td>
 							<asp:ListBox runat="server" ID="_currencyList" Rows="1">
 								<asp:ListItem Text="USD" Value="USD" />
-								<asp:ListItem Text="CHF" Value="EUR" />
+								<asp:ListItem Text="CHF" Value="CHF" />
 								<asp:ListItem Text="EUR" Value="EUR" />
 								<asp:ListItem Text="YEN" Value="YEN" />
 							</asp:ListBox></td>
@@ -73,6 +79,14 @@
 	</table>
 
 	<script type="text/javascript">
-		function MyAwesomeMethod(){return !confirm('Are you sure this is to be sent?');}
-</script>
+        function MyAwesomeMethod() {
+            if (Page_ClientValidate("info")) {
+                confirm('Are you sure this is to be sent?');
+                return true;
+            }
+            else {
+                alert("check the values and enter correctly")
+                return false;
+            }}
+    </script>
 </asp:Content>

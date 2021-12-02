@@ -6,8 +6,8 @@ namespace Wescale.DevTestWeb.UI {
     public partial class Remoting : System.Web.UI.Page {
 
         protected void _sendPing_Command(object sender, CommandEventArgs e) {
-            IPingService service = (IPingService)RemotingHelper.GetObject(typeof(IPingService));
-            _pingReturn.Text = service.Ping();
+             IPingService service = (IPingService)RemotingHelper.GetObject(typeof(IPingService));
+                _pingReturn.Text = service.Ping();
         }
 
         protected void _add_Command(object sender, CommandEventArgs e) {

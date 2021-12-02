@@ -8,7 +8,7 @@
 	<table>
 		<tr>
 			<td>
-				<asp:Button runat="server" Text="Send ping" ID="_sendPing" OnCommand="_sendPing_Command" />
+				<asp:Button runat="server" Text="Send ping" ID="_sendPing" causesvalidation="false" OnCommand="_sendPing_Command" />
 			</td>
 		</tr>
 		<tr>
@@ -27,13 +27,15 @@
 			<td>
 				<asp:TextBox runat="server" ID="_op1" />
 				<asp:RegularExpressionValidator ID="_val1" ControlToValidate="_op1" runat="server" ErrorMessage="Bitte nur ganze Zahlen" ValidationExpression="\d+" />
+				<asp:RequiredFieldValidator runat="server" ID="_RF1" ErrorMessage="Please enter the number." ControlToValidate="_op1" />
 			</td>
 		</tr>
 		<tr>
 			<td>Second integer </td>
 			<td>
 				<asp:TextBox runat="server" ID="_op2" />
-				<asp:RegularExpressionValidator ID="_val2" ControlToValidate="_op1" runat="server" ErrorMessage="Bitte nur ganze Zahlen" ValidationExpression="[\d\D]+" />
+				<asp:RegularExpressionValidator ID="_val2" ControlToValidate="_op2" runat="server" ErrorMessage="Bitte nur ganze Zahlen" ValidationExpression="\d+" />
+				<asp:RequiredFieldValidator runat="server" ID="_RF2" ErrorMessage="Please enter the number." ControlToValidate="_op2" />
 			</td>
 		</tr>
 		<tr>

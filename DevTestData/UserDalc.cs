@@ -1,4 +1,5 @@
 ﻿using NHibernate;
+using NHibernate.Criterion;
 using System;
 using System.Collections.Generic;
 using Wescale.DevTestCommon;
@@ -50,13 +51,17 @@ namespace Wescale.DevTestData {
         /// <param name="pageSize">Size of page</param>
         /// <param name="totalRecords">Total count of users.</param>
 		public IList<User> List(int pageIndex, int pageSize, out int totalRecords) {
-            totalRecords = 42;
+            //totalRecords = 42;
 
             ISession session = SessionFactory.OpenSession();
 
+            ICriteria totRowCount = session.CreateCriteria<User>();
+            var rowcount = totRowCount.SetProjection(Projections.RowCount()).FutureValue<Int32>();
+            totalRecords = rowcount.Value;
+
             ICriteria criteria = session.CreateCriteria<User>();
-            criteria.SetFirstResult(pageIndex);
-            criteria.SetMaxResults(pageSize);
+            criteria.SetFirstResult(pageIndex * pageSize);
+            criteria.SetMaxResults((pageIndex + 1) * pageSize);
 
             return criteria.List<User>();
         }

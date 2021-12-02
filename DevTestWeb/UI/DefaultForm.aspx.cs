@@ -4,7 +4,7 @@ using System.Web.UI.WebControls;
 namespace Wescale.DevTestWeb.UI {
     public partial class DefaultForm : System.Web.UI.Page {
         protected void Page_Load(object sender, EventArgs e) {
-            _currencyList.SelectedValue = "EUR";
+           // _currencyList.SelectedValue = "EUR";
         }
 
         protected void _sendInput_Command(object sender, CommandEventArgs e) {
